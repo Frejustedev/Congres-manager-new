@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord - Congrès Médical</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-stethoscope"></i>
+                <span>CongrèsMédical</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/">Accueil</a></li>
+                <li><a href="#" class="dashboard-btn">Tableau de Bord</a></li>
+                <li><a href="#" onclick="logout()" class="logout-btn">Déconnexion</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Zone d'authentification -->
+    <div id="auth-section" class="auth-section">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <i class="fas fa-lock"></i>
+                    <h2>Accès Tableau de Bord</h2>
+                    <p>Veuillez saisir votre code d'accès obtenu lors de l'inscription</p>
+                </div>
+                <form id="auth-form">
+                    <div class="form-group">
+                        <label for="code-access">Code d'Accès</label>
+                        <input type="text" id="code-access" name="codeAcces" placeholder="Entrez votre code" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-sign-in-alt"></i> Accéder
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tableau de bord principal -->
+    <div id="dashboard-section" class="dashboard-section" style="display: none;">
+        <!-- Header du participant -->
+        <div class="participant-header">
+            <div class="container">
+                <div class="participant-info">
+                    <div class="avatar">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="info">
+                        <h1 id="participant-name">Dr. Nom Prénom</h1>
+                        <p id="participant-institution">Institution médicale</p>
+                        <span id="participant-type" class="badge">Participant</span>
+                    </div>
+                </div>
+                <div class="participant-status">
+                    <div class="status-item">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Inscrit le <span id="inscription-date">15 Feb 2024</span></span>
+                    </div>
+                    <div class="status-item">
+                        <i class="fas fa-id-card"></i>
+                        <span>Code: <span id="participant-code">ABC123</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenu principal -->
+        <div class="dashboard-content">
+            <div class="container">
+                <div class="dashboard-grid">
+                    <!-- Documents et badges -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <i class="fas fa-id-badge"></i>
+                            <h3>Badge et Documents</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="document-item">
+                                <div class="doc-icon">
+                                    <i class="fas fa-id-badge"></i>
+                                </div>
+                                <div class="doc-info">
+                                    <h4>Badge d'Accès</h4>
+                                    <p>Badge personnalisé avec QR code</p>
+                                </div>
+                                <button onclick="generateBadge()" class="btn btn-outline">
+                                    <i class="fas fa-download"></i> Télécharger
+                                </button>
+                            </div>
+                            <div class="document-item">
+                                <div class="doc-icon">
+                                    <i class="fas fa-certificate"></i>
+                                </div>
+                                <div class="doc-info">
+                                    <h4>Certificat de Participation</h4>
+                                    <p>Certificat officiel de participation au congrès</p>
+                                </div>
+                                <button onclick="downloadCertificat()" class="btn btn-outline">
+                                    <i class="fas fa-download"></i> Télécharger
+                                </button>
+                            </div>
+                            <div class="document-item">
+                                <div class="doc-icon">
+                                    <i class="fas fa-qrcode"></i>
+                                </div>
+                                <div class="doc-info">
+                                    <h4>QR Code Personnel</h4>
+                                    <p>Code QR pour identification rapide</p>
+                                </div>
+                                <button onclick="showQRCode()" class="btn btn-outline">
+                                    <i class="fas fa-eye"></i> Afficher
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Programme personnel -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <i class="fas fa-calendar-alt"></i>
+                            <h3>Mon Programme</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="program-day">
+                                <h4>Jour 1 - 15 Mars 2024</h4>
+                                <div class="session-item">
+                                    <span class="time">09:00 - 10:30</span>
+                                    <span class="title">Cérémonie d'ouverture</span>
+                                    <span class="status confirmed">Confirmé</span>
+                                </div>
+                                <div class="session-item">
+                                    <span class="time">11:00 - 12:30</span>
+                                    <span class="title">Innovations en cardiologie</span>
+                                    <span class="status confirmed">Confirmé</span>
+                                </div>
+                            </div>
+                            <div class="program-day">
+                                <h4>Jour 2 - 16 Mars 2024</h4>
+                                <div class="session-item">
+                                    <span class="time">09:00 - 10:30</span>
+                                    <span class="title">Intelligence artificielle en médecine</span>
+                                    <span class="status confirmed">Confirmé</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Informations pratiques -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <i class="fas fa-info-circle"></i>
+                            <h3>Informations Pratiques</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="info-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <h4>Lieu du Congrès</h4>
+                                    <p>Centre de Conférences Médical<br>123 Avenue de la Médecine, Paris</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <h4>Horaires</h4>
+                                    <p>Accueil: 8h30<br>Sessions: 9h00 - 17h00</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-wifi"></i>
+                                <div>
+                                    <h4>WiFi</h4>
+                                    <p>Réseau: CongresMedical<br>Mot de passe: medical2024</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contacts utiles -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <i class="fas fa-phone"></i>
+                            <h3>Contacts Utiles</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="contact-item">
+                                <i class="fas fa-headset"></i>
+                                <div>
+                                    <h4>Support Technique</h4>
+                                    <p>+33 1 23 45 67 89</p>
+                                    <p>support@congres-medical.com</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-question-circle"></i>
+                                <div>
+                                    <h4>Informations Générales</h4>
+                                    <p>+33 1 23 45 67 90</p>
+                                    <p>info@congres-medical.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notifications -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <i class="fas fa-bell"></i>
+                            <h3>Notifications</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="notification-item new">
+                                <i class="fas fa-info-circle"></i>
+                                <div>
+                                    <h4>Rappel important</h4>
+                                    <p>N'oubliez pas d'imprimer votre badge avant votre arrivée.</p>
+                                    <small>Il y a 2 heures</small>
+                                </div>
+                            </div>
+                            <div class="notification-item">
+                                <i class="fas fa-calendar"></i>
+                                <div>
+                                    <h4>Programme mis à jour</h4>
+                                    <p>Le programme du jour 2 a été légèrement modifié.</p>
+                                    <small>Hier</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QR Code -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <i class="fas fa-qrcode"></i>
+                            <h3>QR Code Personnel</h3>
+                        </div>
+                        <div class="card-content text-center">
+                            <div id="qr-code" class="qr-code">
+                                <i class="fas fa-qrcode"></i>
+                                <p>QR Code généré automatiquement</p>
+                            </div>
+                            <p><small>Présentez ce code à l'entrée</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de badge -->
+    <div id="badge-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <i class="fas fa-id-badge"></i>
+                <h3>Badge d'Accès</h3>
+            </div>
+            <div class="modal-body">
+                <div id="badge-preview" class="badge-preview">
+                    <div class="badge-header">
+                        <h3>Congrès International de Médecine</h3>
+                        <p>15-17 Mars 2024</p>
+                    </div>
+                    <div class="badge-content">
+                        <div class="badge-photo">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <div class="badge-info">
+                            <h2 id="badge-name">Dr. Nom Prénom</h2>
+                            <p id="badge-institution">Institution</p>
+                            <span id="badge-type" class="badge-type">PARTICIPANT</span>
+                        </div>
+                    </div>
+                    <div class="badge-footer">
+                        <div class="badge-qr">
+                            <i class="fas fa-qrcode"></i>
+                        </div>
+                        <div class="badge-code">
+                            <p>Code: <span id="badge-code">ABC123</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="badge-actions">
+                    <button onclick="printBadge()" class="btn btn-primary">
+                        <i class="fas fa-print"></i> Imprimer
+                    </button>
+                    <button onclick="downloadBadge()" class="btn btn-secondary">
+                        <i class="fas fa-download"></i> Télécharger PDF
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html> 

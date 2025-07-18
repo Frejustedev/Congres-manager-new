@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paiement - Congrès SAFBMEN/SBCB</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="payment.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-stethoscope"></i>
+                <span>CongrèsMédical</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/">Accueil</a></li>
+                <li><a href="/#inscription">Inscription</a></li>
+                <li><a href="/dashboard" class="dashboard-btn">Tableau de Bord</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Section Paiement -->
+    <section class="payment-section">
+        <div class="container">
+            <!-- Étapes de paiement -->
+            <div class="payment-steps">
+                <div class="step completed">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Inscription</div>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step active">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Paiement</div>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Confirmation</div>
+                </div>
+            </div>
+
+            <div class="payment-container">
+                <!-- Récapitulatif inscription -->
+                <div class="payment-summary">
+                    <h2><i class="fas fa-receipt"></i> Récapitulatif de votre inscription</h2>
+                    <div class="participant-info" id="participant-info">
+                        <!-- Rempli par JavaScript -->
+                    </div>
+                    <div class="price-breakdown">
+                        <div class="price-item">
+                            <span>Inscription</span>
+                            <span id="base-price">50 000 FCFA</span>
+                        </div>
+                        <div class="price-item total">
+                            <span><strong>Total à payer</strong></span>
+                            <span id="total-price"><strong>50 000 FCFA</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Moyens de paiement -->
+                <div class="payment-methods">
+                    <h2><i class="fas fa-credit-card"></i> Choisissez votre moyen de paiement</h2>
+                    
+                    <!-- Mobile Money -->
+                    <div class="payment-category">
+                        <h3><i class="fas fa-mobile-alt"></i> Mobile Money</h3>
+                        <div class="payment-options">
+                            <div class="payment-option" data-method="orange_money">
+                                <div class="payment-logo">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzE_5pQ8P5v9wZlJF_MwO2rQvGz0j9wJ0Qhw&s" alt="Orange Money">
+                                </div>
+                                <div class="payment-info">
+                                    <h4>Orange Money</h4>
+                                    <p>Paiement sécurisé avec votre compte Orange Money</p>
+                                </div>
+                                <div class="payment-check">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                            </div>
+
+                            <div class="payment-option" data-method="mtn_money">
+                                <div class="payment-logo">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx7WD3UqJ8QKRlL_JpGXzYzqJ8x0nJhUgqfA&s" alt="MTN Mobile Money">
+                                </div>
+                                <div class="payment-info">
+                                    <h4>MTN Mobile Money</h4>
+                                    <p>Payez directement depuis votre portefeuille MTN</p>
+                                </div>
+                                <div class="payment-check">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                            </div>
+
+                            <div class="payment-option" data-method="moov_money">
+                                <div class="payment-logo">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGG_QqX8lFGGzT8mQZrKlGQj8xmYHgJ8yJNQ&s" alt="Moov Money">
+                                </div>
+                                <div class="payment-info">
+                                    <h4>Moov Money</h4>
+                                    <p>Solution de paiement mobile Moov</p>
+                                </div>
+                                <div class="payment-check">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                            </div>
+
+                            <div class="payment-option" data-method="airtel_money">
+                                <div class="payment-logo">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKzQGGrQ2QrXzJ8GZ8QrL_QqRrKKJqJ8mYmw&s" alt="Airtel Money">
+                                </div>
+                                <div class="payment-info">
+                                    <h4>Airtel Money</h4>
+                                    <p>Paiement rapide avec Airtel Money</p>
+                                </div>
+                                <div class="payment-check">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cartes bancaires -->
+                    <div class="payment-category">
+                        <h3><i class="fas fa-credit-card"></i> Cartes Bancaires</h3>
+                        <div class="payment-options">
+                            <div class="payment-option" data-method="card">
+                                <div class="payment-logo">
+                                    <div class="card-logos">
+                                        <i class="fab fa-cc-visa"></i>
+                                        <i class="fab fa-cc-mastercard"></i>
+                                    </div>
+                                </div>
+                                <div class="payment-info">
+                                    <h4>Carte Bancaire</h4>
+                                    <p>Visa, Mastercard acceptées - Paiement sécurisé</p>
+                                </div>
+                                <div class="payment-check">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Virement bancaire -->
+                    <div class="payment-category">
+                        <h3><i class="fas fa-university"></i> Virement Bancaire</h3>
+                        <div class="payment-options">
+                            <div class="payment-option" data-method="bank_transfer">
+                                <div class="payment-logo">
+                                    <i class="fas fa-university"></i>
+                                </div>
+                                <div class="payment-info">
+                                    <h4>Virement Bancaire</h4>
+                                    <p>Paiement par virement - Confirmation sous 24h</p>
+                                </div>
+                                <div class="payment-check">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulaire de paiement -->
+                <div class="payment-form" id="payment-form" style="display: none;">
+                    <h3 id="payment-method-title">Paiement Orange Money</h3>
+                    
+                    <!-- Formulaire Mobile Money -->
+                    <div id="mobile-money-form" class="payment-form-content">
+                        <div class="form-group">
+                            <label for="phone-number">Numéro de téléphone</label>
+                            <div class="phone-input">
+                                <select id="country-code" class="country-select">
+                                    <option value="+229">🇧🇯 +229</option>
+                                    <option value="+226">🇧🇫 +226</option>
+                                    <option value="+225">🇨🇮 +225</option>
+                                    <option value="+233">🇬🇭 +233</option>
+                                    <option value="+221">🇸🇳 +221</option>
+                                </select>
+                                <input type="tel" id="phone-number" placeholder="XX XX XX XX" required>
+                            </div>
+                            <small>Saisissez le numéro associé à votre compte mobile money</small>
+                        </div>
+                    </div>
+
+                    <!-- Formulaire Carte Bancaire -->
+                    <div id="card-form" class="payment-form-content" style="display: none;">
+                        <p class="security-notice">
+                            <i class="fas fa-shield-alt"></i>
+                            Vos données bancaires sont sécurisées par cryptage SSL
+                        </p>
+                        <div class="form-group">
+                            <label for="card-number">Numéro de carte</label>
+                            <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expiry-date">Date d'expiration</label>
+                                <input type="text" id="expiry-date" placeholder="MM/AA" maxlength="5" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" placeholder="123" maxlength="4" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-holder">Nom du titulaire</label>
+                            <input type="text" id="card-holder" placeholder="Nom sur la carte" required>
+                        </div>
+                    </div>
+
+                    <!-- Informations virement -->
+                    <div id="bank-transfer-info" class="payment-form-content" style="display: none;">
+                        <div class="bank-details">
+                            <h4>Coordonnées bancaires</h4>
+                            <div class="bank-info">
+                                <p><strong>Banque :</strong> Bank of Africa Bénin</p>
+                                <p><strong>Titulaire :</strong> SAFBMEN-SBCB</p>
+                                <p><strong>IBAN :</strong> BJ66 BK01 0101 0123 4567 8901 23</p>
+                                <p><strong>Code SWIFT :</strong> BKBJBJCX</p>
+                                <p><strong>Référence :</strong> <span id="payment-reference"></span></p>
+                            </div>
+                            <div class="transfer-instructions">
+                                <h4>Instructions</h4>
+                                <ol>
+                                    <li>Effectuez le virement avec la référence indiquée</li>
+                                    <li>Envoyez le reçu à congresconjointbiologie@gmail.com</li>
+                                    <li>Votre inscription sera confirmée sous 24h</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Conditions et bouton -->
+                    <div class="payment-footer">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="accept-terms" required>
+                            <span class="checkmark"></span>
+                            J'accepte les <a href="#" onclick="showTerms()">conditions générales</a> et confirme mon inscription
+                        </label>
+                        
+                        <button type="button" id="pay-button" class="btn btn-primary payment-btn" disabled>
+                            <i class="fas fa-lock"></i>
+                            <span id="pay-button-text">Payer 50 000 FCFA</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de traitement -->
+    <div id="processing-modal" class="modal">
+        <div class="modal-content processing">
+            <div class="processing-animation">
+                <div class="spinner"></div>
+            </div>
+            <h3>Traitement du paiement</h3>
+            <p id="processing-message">Veuillez patienter pendant que nous traitons votre paiement...</p>
+            <div class="processing-steps">
+                <div class="step-indicator active" id="step-init">
+                    <i class="fas fa-play"></i> Initialisation
+                </div>
+                <div class="step-indicator" id="step-payment">
+                    <i class="fas fa-mobile-alt"></i> Paiement
+                </div>
+                <div class="step-indicator" id="step-confirmation">
+                    <i class="fas fa-check"></i> Confirmation
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de succès -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content success">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Paiement réussi !</h3>
+            <p>Votre inscription au congrès SAFBMEN/SBCB est confirmée.</p>
+            <div class="success-details">
+                <p><strong>Référence :</strong> <span id="transaction-ref"></span></p>
+                <p><strong>Montant :</strong> <span id="transaction-amount"></span></p>
+            </div>
+            <div class="success-actions">
+                <button onclick="downloadInvoice()" class="btn btn-outline">
+                    <i class="fas fa-download"></i> Télécharger la facture
+                </button>
+                <button onclick="goToDashboard()" class="btn btn-primary">
+                    <i class="fas fa-tachometer-alt"></i> Accéder au tableau de bord
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal conditions générales -->
+    <div id="terms-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeTerms()">&times;</span>
+            <h3>Conditions Générales</h3>
+            <div class="terms-content">
+                <h4>1. Inscription et Paiement</h4>
+                <p>L'inscription au congrès n'est confirmée qu'après réception du paiement intégral.</p>
+                
+                <h4>2. Annulation et Remboursement</h4>
+                <p>Annulation possible jusqu'au 15 septembre 2025 avec remboursement de 50% des frais.</p>
+                
+                <h4>3. Modification</h4>
+                <p>Les modifications d'inscription sont possibles jusqu'au 1er octobre 2025.</p>
+                
+                <h4>4. Données personnelles</h4>
+                <p>Vos données sont utilisées uniquement dans le cadre du congrès et ne sont pas transmises à des tiers.</p>
+                
+                <h4>5. Force majeure</h4>
+                <p>En cas d'annulation du congrès pour cause de force majeure, un report ou remboursement sera proposé.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="payment.js"></script>
+</body>
+</html> 

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1er Congrès SAFBMEN - 5ème Congrès de Biologie Clinique</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-stethoscope"></i>
+                <span>CongrèsMédical</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#programme">Programme</a></li>
+                <li><a href="#inscription">Inscription</a></li>
+                <li><a href="#abstract">Abstract</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="/dashboard" class="dashboard-btn">Tableau de Bord</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">1er Congrès SAFBMEN - 5ème Congrès de Biologie Clinique</h1>
+            <p class="hero-subtitle">La biologie médicale et la médecine nucléaire à l'heure de la digitalisation</p>
+            <div class="hero-info">
+                <div class="info-item">
+                    <i class="fas fa-calendar"></i>
+                    <span id="dates-congres">21-23 Octobre 2025</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span id="lieu-congres">ISBA COTONOU</span>
+                </div>
+            </div>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="scrollToSection('inscription')">
+                    <i class="fas fa-user-plus"></i> S'inscrire
+                </button>
+                <button class="btn btn-secondary" onclick="scrollToSection('programme')">
+                    <i class="fas fa-calendar-alt"></i> Programme
+                </button>
+            </div>
+        </div>
+        <div class="hero-background">
+            <div class="floating-icon">
+                <i class="fas fa-heartbeat"></i>
+            </div>
+            <div class="floating-icon">
+                <i class="fas fa-microscope"></i>
+            </div>
+            <div class="floating-icon">
+                <i class="fas fa-dna"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- À propos -->
+    <section class="about">
+        <div class="container">
+            <h2>À Propos du Congrès</h2>
+            <p id="description-congres">La biologie médicale et la médecine nucléaire à l'heure de la digitalisation: quels enjeux pour les pays à ressources limitées</p>
+            <div class="organizers">
+                <h3>Co-organisé par :</h3>
+                <ul>
+                    <li><strong>Société Africaine Francophone de Biophysique et Médecine Nucléaire (SAFBMEN)</strong></li>
+                    <li><strong>Société de Biologie Clinique du Bénin (SBCB)</strong></li>
+                </ul>
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <h3>500+</h3>
+                    <p>Participants attendus</p>
+                </div>
+                <div class="stat-item">
+                    <h3>50+</h3>
+                    <p>Conférenciers experts</p>
+                </div>
+                <div class="stat-item">
+                    <h3>20+</h3>
+                    <p>Sessions spécialisées</p>
+                </div>
+                <div class="stat-item">
+                    <h3>3</h3>
+                    <p>Jours d'innovation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programme -->
+    <section id="programme" class="program">
+        <div class="container">
+            <h2>Programme du Congrès</h2>
+            <div class="sub-themes">
+                <h3>Sous-thèmes du Congrès :</h3>
+                <ul class="themes-list">
+                    <li>1. Biologie polyvalente et e-santé</li>
+                    <li>2. Biologie spécialisée et e-santé</li>
+                    <li>3. Télémédecine et interprétation à distance</li>
+                    <li>4. Intelligence artificielle appliquée au diagnostic médical</li>
+                    <li>5. Communications libres</li>
+                </ul>
+            </div>
+            
+            <div class="program-days">
+                <div class="day-card special">
+                    <h3>20 Octobre 2025</h3>
+                    <div class="day-content">
+                        <div class="session">
+                            <span class="time">Toute la journée</span>
+                            <span class="title">Précongrès</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="day-card">
+                    <h3>21 Octobre 2025 - Jour 1</h3>
+                    <div class="day-content">
+                        <div class="session">
+                            <span class="time">09:00 - 10:30</span>
+                            <span class="title">Cérémonie d'ouverture</span>
+                        </div>
+                        <div class="session">
+                            <span class="time">11:00 - 12:30</span>
+                            <span class="title">Biologie polyvalente et e-santé</span>
+                        </div>
+                        <div class="session">
+                            <span class="time">14:00 - 15:30</span>
+                            <span class="title">Intelligence artificielle appliquée au diagnostic médical</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="day-card">
+                    <h3>22 Octobre 2025 - Jour 2</h3>
+                    <div class="day-content">
+                        <div class="session">
+                            <span class="time">09:00 - 10:30</span>
+                            <span class="title">Biologie spécialisée et e-santé</span>
+                        </div>
+                        <div class="session">
+                            <span class="time">11:00 - 12:30</span>
+                            <span class="title">Télémédecine et interprétation à distance</span>
+                        </div>
+                        <div class="session">
+                            <span class="time">14:00 - 15:30</span>
+                            <span class="title">Communications libres</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="day-card">
+                    <h3>23 Octobre 2025 - Jour 3</h3>
+                    <div class="day-content">
+                        <div class="session">
+                            <span class="time">09:00 - 10:30</span>
+                            <span class="title">Sessions d'abstracts</span>
+                        </div>
+                        <div class="session">
+                            <span class="time">11:00 - 12:30</span>
+                            <span class="title">Table ronde finale</span>
+                        </div>
+                        <div class="session">
+                            <span class="time">14:00 - 15:00</span>
+                            <span class="title">Cérémonie de clôture</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="day-card special">
+                    <h3>24 Octobre 2025</h3>
+                    <div class="day-content">
+                        <div class="session">
+                            <span class="time">Toute la journée</span>
+                            <span class="title">Assemblées générales SAFBMEN et SBCB</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inscription -->
+    <section id="inscription" class="registration">
+        <div class="container">
+            <h2>Inscription au Congrès</h2>
+            <div class="registration-content">
+                <div class="pricing-cards">
+                    <div class="pricing-card featured">
+                        <h3>Enseignants - Chercheurs</h3>
+                        <div class="price"><span id="prix-enseignant">50 000</span> FCFA</div>
+                        <ul>
+                            <li>Accès à toutes les sessions</li>
+                            <li>Matériel de congrès</li>
+                            <li>Pauses café et déjeuners</li>
+                            <li>Certificat de participation</li>
+                            <li>Actes du congrès</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Médecins et Pharmaciens Biologistes</h3>
+                        <div class="price"><span id="prix-medecin">40 000</span> FCFA</div>
+                        <ul>
+                            <li>Accès à toutes les sessions</li>
+                            <li>Matériel de congrès</li>
+                            <li>Pauses café et déjeuners</li>
+                            <li>Certificat de participation</li>
+                            <li>Actes du congrès</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Paramédicaux IDH et Étudiants</h3>
+                        <div class="price"><span id="prix-paramedical">25 000</span> FCFA</div>
+                        <ul>
+                            <li>Accès à toutes les sessions</li>
+                            <li>Matériel de congrès</li>
+                            <li>Pauses café incluses</li>
+                            <li>Certificat de participation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <form id="inscription-form" class="registration-form">
+                    <h3>Formulaire d'Inscription</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nom">Nom *</label>
+                            <input type="text" id="nom" name="nom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="prenom">Prénom *</label>
+                            <input type="text" id="prenom" name="prenom" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telephone">Téléphone *</label>
+                            <input type="tel" id="telephone" name="telephone" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="specialite">Spécialité *</label>
+                            <select id="specialite" name="specialite" required>
+                                <option value="">Sélectionnez votre spécialité</option>
+                                <option value="cardiologie">Cardiologie</option>
+                                <option value="neurologie">Neurologie</option>
+                                <option value="oncologie">Oncologie</option>
+                                <option value="chirurgie">Chirurgie</option>
+                                <option value="pediatrie">Pédiatrie</option>
+                                <option value="psychiatrie">Psychiatrie</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="institution">Institution *</label>
+                            <input type="text" id="institution" name="institution" required>
+                        </div>
+                    </div>
+                                            <div class="form-group">
+                            <label for="typeParticipant">Type de participation *</label>
+                            <select id="typeParticipant" name="typeParticipant" required>
+                                <option value="">Sélectionnez le type</option>
+                                <option value="enseignant">Enseignant - Chercheur</option>
+                                <option value="medecin">Médecin / Pharmacien Biologiste</option>
+                                <option value="paramedical">Paramédical IDH / Étudiant</option>
+                            </select>
+                        </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> S'inscrire
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Soumission Abstract -->
+    <section id="abstract" class="abstract-section">
+        <div class="container">
+            <h2>Soumission d'Abstract</h2>
+            <p>Soumettez votre abstract pour une présentation lors du congrès</p>
+            
+            <div class="submission-info">
+                <h3>📋 Spécifications pour les soumissions :</h3>
+                <ul class="specs-list">
+                    <li><strong>Format :</strong> Word, Time New Roman, Police 12</li>
+                    <li><strong>Longueur :</strong> 300 mots maximum</li>
+                    <li><strong>Langues :</strong> Français ou Anglais</li>
+                    <li><strong>Structure :</strong> Introduction, objectif, méthodes, résultats, conclusion</li>
+                    <li><strong>Mots-clés :</strong> 5 mots clés maximum</li>
+                    <li><strong>Date limite :</strong> 10 août 2025</li>
+                </ul>
+            </div>
+            
+            <form id="abstract-form" class="abstract-form">
+                <div class="form-group">
+                    <label for="titre">Titre de l'abstract *</label>
+                    <input type="text" id="titre" name="titre" required>
+                </div>
+                <div class="form-group">
+                    <label for="auteurs">Auteurs *</label>
+                    <input type="text" id="auteurs" name="auteurs" placeholder="Nom Prénom, Nom Prénom..." required>
+                </div>
+                <div class="form-group">
+                    <label for="email-abstract">Email de contact *</label>
+                    <input type="email" id="email-abstract" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="langue">Langue de l'abstract *</label>
+                    <select id="langue" name="langue" required>
+                        <option value="">Sélectionnez la langue</option>
+                        <option value="francais">Français</option>
+                        <option value="anglais">Anglais</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="resume">Résumé de l'abstract *</label>
+                    <textarea id="resume" name="resume" rows="8" maxlength="300" required placeholder="Introduction, objectif, méthodes, résultats, conclusion"></textarea>
+                    <small>Maximum 300 mots</small>
+                </div>
+                <div class="form-group">
+                    <label for="motsClefs">Mots-clés * (maximum 5)</label>
+                    <input type="text" id="motsClefs" name="motsClefs" placeholder="mot1, mot2, mot3, mot4, mot5" required>
+                </div>
+                <div class="deadline-warning">
+                    ⏰ <strong>Date limite de soumission : 10 août 2025</strong>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-upload"></i> Soumettre l'Abstract
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span id="email-contact">congresconjointbiologie@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+229 0197894110</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+229 0197130061</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>ISBA COTONOU, Bénin</span>
+                </div>
+            </div>
+            
+            <div class="congress-publications">
+                <h3>📚 Actes du congrès :</h3>
+                <ul>
+                    <li>Journal de radiologie et de médecine nucléaire d'Afrique</li>
+                    <li>Journal de la Société de biologie clinique du Bénin</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Congrès International de Médecine. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Modal de succès -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <i class="fas fa-check-circle"></i>
+                <h3>Succès!</h3>
+            </div>
+            <div class="modal-body">
+                <p id="success-message"></p>
+                <div id="code-acces-container" style="display:none;">
+                    <h4>Votre code d'accès:</h4>
+                    <div class="code-display">
+                        <span id="code-acces"></span>
+                        <button onclick="copyCode()" class="btn-copy">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    <p><small>Conservez ce code pour accéder à votre tableau de bord</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

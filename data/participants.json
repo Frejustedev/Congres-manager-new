@@ -1,0 +1,41 @@
+[
+  {
+    "id": "6601e03a-29b2-462a-ba53-6e23de0d9450",
+    "nom": "AGBOTON",
+    "prenom": "frejuste",
+    "email": "agbotonfrejuste@gmail.com",
+    "telephone": "66253088",
+    "specialite": "pediatrie",
+    "institution": "nl",
+    "typeParticipant": "participant",
+    "codeAcces": "YBORHM",
+    "dateInscription": "2025-07-16T15:34:34.778Z",
+    "statut": "inscrit"
+  },
+  {
+    "id": "6430e73d-66d9-4300-b172-9b1ae97e590c",
+    "nom": "Harold",
+    "prenom": "TANKPINOU",
+    "email": "agbofrejuste@gmail.com",
+    "telephone": "66253088",
+    "specialite": "chirurgie",
+    "institution": "nl",
+    "typeParticipant": "paramedical",
+    "codeAcces": "OT9NQ3",
+    "dateInscription": "2025-07-16T17:19:46.299Z",
+    "statut": "inscrit"
+  },
+  {
+    "id": "0152b8a7-69b1-4f95-ae21-27eb1be63b7c",
+    "nom": "AGBOTON",
+    "prenom": "frejuste",
+    "email": "agbotoejuste@gmail.com",
+    "telephone": "66253088",
+    "specialite": "oncologie",
+    "institution": "nl",
+    "typeParticipant": "enseignant",
+    "codeAcces": "LXNNC9",
+    "dateInscription": "2025-07-16T17:31:05.760Z",
+    "statut": "inscrit"
+  }
+]

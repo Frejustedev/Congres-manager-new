@@ -1,0 +1,39 @@
+{
+  "congrès": {
+    "nom": "1er Congrès SAFBMEN - 5ème Congrès de Biologie Clinique",
+    "dates": "21-23 Octobre 2025",
+    "lieu": "ISBA COTONOU",
+    "description": "La biologie médicale et la médecine nucléaire à l'heure de la digitalisation: quels enjeux pour les pays à ressources limitées",
+    "email": "congresconjointbiologie@gmail.com",
+    "theme": "La biologie médicale et la médecine nucléaire à l'heure de la digitalisation: quels enjeux pour les pays à ressources limitées",
+    "organisateurs": [
+      "Société Africaine Francophone de Biophysique et Médecine Nucléaire (SAFBMEN)",
+      "Société de Biologie Clinique du Bénin (SBCB)"
+    ],
+    "telephone": ["+229 0197894110", "+229 0197130061"],
+    "fraisInscription": {
+      "enseignant": 50000,
+      "medecin": 40000,
+      "paramedical": 25000
+    },
+    "sousThemes": [
+      "Biologie polyvalente et e-santé",
+      "Biologie spécialisée et e-santé", 
+      "Télémédecine et interprétation à distance",
+      "Intelligence artificielle appliquée au diagnostic médical",
+      "Communications libres"
+    ],
+    "soumissions": {
+      "motLimit": 300,
+      "format": "Word, Time New Roman, Police 12",
+      "langues": "Français ou Anglais",
+      "structure": "Introduction, objectif, méthodes, résultats, conclusion",
+      "motsClefs": "5 mots clés maximum",
+      "dateLimite": "10 août 2025"
+    },
+    "evenements": {
+      "precongres": "20 octobre 2025",
+      "assemblees": "24 octobre 2025"
+    }
+  }
+}

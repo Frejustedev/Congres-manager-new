@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration - Congrès SAFBMEN/SBCB</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Zone d'authentification admin -->
+    <div id="admin-auth" class="admin-auth">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <i class="fas fa-shield-alt"></i>
+                    <h2>Administration - Congrès Médical</h2>
+                    <p>Accès restreint aux administrateurs</p>
+                </div>
+                <form id="admin-auth-form">
+                    <div class="form-group">
+                        <label for="admin-password">Mot de passe administrateur</label>
+                        <input type="password" id="admin-password" name="password" placeholder="Mot de passe" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-sign-in-alt"></i> Accéder à l'administration
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interface d'administration -->
+    <div id="admin-panel" class="admin-panel" style="display: none;">
+        <!-- Navigation admin -->
+        <nav class="admin-nav">
+            <div class="admin-nav-header">
+                <i class="fas fa-cog"></i>
+                <span>Administration</span>
+            </div>
+            <ul class="admin-nav-menu">
+                <li><a href="#dashboard" class="nav-link active" data-section="dashboard">
+                    <i class="fas fa-chart-pie"></i> Tableau de Bord
+                </a></li>
+                <li><a href="#participants" class="nav-link" data-section="participants">
+                    <i class="fas fa-users"></i> Participants
+                </a></li>
+                <li><a href="#abstracts" class="nav-link" data-section="abstracts">
+                    <i class="fas fa-file-alt"></i> Abstracts
+                </a></li>
+                <li><a href="#exports" class="nav-link" data-section="exports">
+                    <i class="fas fa-download"></i> Exports
+                </a></li>
+                <li><a href="#emails" class="nav-link" data-section="emails">
+                    <i class="fas fa-envelope"></i> Emails
+                </a></li>
+            </ul>
+            <div class="admin-nav-footer">
+                <button onclick="adminLogout()" class="btn btn-outline">
+                    <i class="fas fa-sign-out-alt"></i> Déconnexion
+                </button>
+            </div>
+        </nav>
+
+        <!-- Contenu principal -->
+        <main class="admin-main">
+            <!-- Header avec titre et actions rapides -->
+            <div class="admin-header">
+                <h1 id="page-title">Tableau de Bord</h1>
+                <div class="admin-actions">
+                    <button onclick="refreshData()" class="btn btn-outline">
+                        <i class="fas fa-sync-alt"></i> Actualiser
+                    </button>
+                    <span class="last-update">Dernière MAJ: <span id="last-update">--:--</span></span>
+                </div>
+            </div>
+
+            <!-- Section: Tableau de Bord -->
+            <section id="section-dashboard" class="admin-section active">
+                <!-- Statistiques rapides -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="total-participants">0</h3>
+                            <p>Participants Inscrits</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="total-abstracts">0</h3>
+                            <p>Abstracts Soumis</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="pending-abstracts">0</h3>
+                            <p>En Attente de Révision</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="total-revenue">0 FCFA</h3>
+                            <p>Revenus Estimés</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Graphiques -->
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <h3>Répartition des Participants</h3>
+                        <canvas id="participants-chart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Statut des Abstracts</h3>
+                        <canvas id="abstracts-chart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Inscriptions par Jour</h3>
+                        <canvas id="inscriptions-chart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Statistiques Temps Réel</h3>
+                        <div class="realtime-stats">
+                            <div class="realtime-stat">
+                                <span class="stat-label">Aujourd'hui:</span>
+                                <span class="stat-value" id="today-registrations">0</span>
+                            </div>
+                            <div class="realtime-stat">
+                                <span class="stat-label">Cette semaine:</span>
+                                <span class="stat-value" id="week-registrations">0</span>
+                            </div>
+                            <div class="realtime-stat">
+                                <span class="stat-label">Base de données:</span>
+                                <span class="stat-value" id="db-status">JSON</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Gestion des Participants -->
+            <section id="section-participants" class="admin-section">
+                <div class="section-header">
+                    <div class="section-actions">
+                        <input type="text" id="participants-search" placeholder="Rechercher par nom, email..." class="search-input">
+                        <select id="participants-filter" class="filter-select">
+                            <option value="">Tous les types</option>
+                            <option value="enseignant">Enseignants</option>
+                            <option value="medecin">Médecins</option>
+                            <option value="paramedical">Paramédicaux</option>
+                        </select>
+                        <button onclick="exportParticipants()" class="btn btn-primary">
+                            <i class="fas fa-download"></i> Exporter
+                        </button>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table id="participants-table" class="data-table">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="select-all-participants"></th>
+                                <th>Nom</th>
+                                <th>Email</th>
+                                <th>Type</th>
+                                <th>Institution</th>
+                                <th>Code</th>
+                                <th>Date Inscription</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="participants-tbody">
+                            <!-- Rempli par JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="bulk-actions" id="participants-bulk-actions" style="display: none;">
+                    <span class="selected-count">0 participant(s) sélectionné(s)</span>
+                    <button onclick="bulkEditParticipants()" class="btn btn-outline">
+                        <i class="fas fa-edit"></i> Modifier
+                    </button>
+                    <button onclick="bulkDeleteParticipants()" class="btn btn-danger">
+                        <i class="fas fa-trash"></i> Supprimer
+                    </button>
+                    <button onclick="sendEmailToSelected()" class="btn btn-primary">
+                        <i class="fas fa-envelope"></i> Envoyer Email
+                    </button>
+                </div>
+            </section>
+
+            <!-- Section: Gestion des Abstracts -->
+            <section id="section-abstracts" class="admin-section">
+                <div class="section-header">
+                    <div class="section-actions">
+                        <input type="text" id="abstracts-search" placeholder="Rechercher par titre, auteur..." class="search-input">
+                        <select id="abstracts-filter" class="filter-select">
+                            <option value="">Tous les statuts</option>
+                            <option value="en_review">En révision</option>
+                            <option value="accepte">Accepté</option>
+                            <option value="refuse">Refusé</option>
+                        </select>
+                        <button onclick="exportAbstracts()" class="btn btn-primary">
+                            <i class="fas fa-download"></i> Exporter
+                        </button>
+                    </div>
+                </div>
+                <div class="abstracts-grid" id="abstracts-grid">
+                    <!-- Rempli par JavaScript -->
+                </div>
+            </section>
+
+            <!-- Section: Exports -->
+            <section id="section-exports" class="admin-section">
+                <div class="exports-grid">
+                    <div class="export-card">
+                        <h3><i class="fas fa-users"></i> Export Participants</h3>
+                        <p>Exporter la liste complète des participants inscrits</p>
+                        <div class="export-options">
+                            <label>
+                                <input type="checkbox" checked> Informations personnelles
+                            </label>
+                            <label>
+                                <input type="checkbox" checked> Institution et spécialité
+                            </label>
+                            <label>
+                                <input type="checkbox"> Statistiques de participation
+                            </label>
+                        </div>
+                        <div class="export-actions">
+                            <button onclick="exportData('participants', 'excel')" class="btn btn-primary">
+                                <i class="fas fa-file-excel"></i> Excel
+                            </button>
+                            <button onclick="exportData('participants', 'csv')" class="btn btn-outline">
+                                <i class="fas fa-file-csv"></i> CSV
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="export-card">
+                        <h3><i class="fas fa-file-alt"></i> Export Abstracts</h3>
+                        <p>Exporter tous les abstracts avec leur statut de révision</p>
+                        <div class="export-options">
+                            <label>
+                                <input type="checkbox" checked> Contenu complet
+                            </label>
+                            <label>
+                                <input type="checkbox" checked> Statut et commentaires
+                            </label>
+                            <label>
+                                <input type="checkbox"> Informations auteur
+                            </label>
+                        </div>
+                        <div class="export-actions">
+                            <button onclick="exportData('abstracts', 'excel')" class="btn btn-primary">
+                                <i class="fas fa-file-excel"></i> Excel
+                            </button>
+                            <button onclick="exportData('abstracts', 'csv')" class="btn btn-outline">
+                                <i class="fas fa-file-csv"></i> CSV
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="export-card">
+                        <h3><i class="fas fa-chart-line"></i> Rapport Complet</h3>
+                        <p>Rapport détaillé avec statistiques et analyses</p>
+                        <div class="export-options">
+                            <label>
+                                <input type="checkbox" checked> Statistiques générales
+                            </label>
+                            <label>
+                                <input type="checkbox" checked> Graphiques et tendances
+                            </label>
+                            <label>
+                                <input type="checkbox"> Recommandations
+                            </label>
+                        </div>
+                        <div class="export-actions">
+                            <button onclick="generateReport()" class="btn btn-success">
+                                <i class="fas fa-file-pdf"></i> Générer PDF
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Emails -->
+            <section id="section-emails" class="admin-section">
+                <div class="email-composer">
+                    <h3>Envoyer un Email Groupé</h3>
+                    <form id="email-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email-recipients">Destinataires</label>
+                                <select id="email-recipients" multiple class="form-control">
+                                    <option value="all">Tous les participants</option>
+                                    <option value="enseignant">Enseignants uniquement</option>
+                                    <option value="medecin">Médecins uniquement</option>
+                                    <option value="paramedical">Paramédicaux uniquement</option>
+                                    <option value="abstract-authors">Auteurs d'abstracts</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="email-template">Template</label>
+                                <select id="email-template" class="form-control">
+                                    <option value="">Personnalisé</option>
+                                    <option value="confirmation">Confirmation d'inscription</option>
+                                    <option value="reminder">Rappel événement</option>
+                                    <option value="abstract-status">Statut abstract</option>
+                                    <option value="program-update">Mise à jour programme</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email-subject">Objet</label>
+                            <input type="text" id="email-subject" class="form-control" placeholder="Objet de l'email">
+                        </div>
+                        <div class="form-group">
+                            <label for="email-content">Message</label>
+                            <textarea id="email-content" class="form-control" rows="8" placeholder="Votre message..."></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" onclick="previewEmail()" class="btn btn-outline">
+                                <i class="fas fa-eye"></i> Aperçu
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i> Envoyer
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="participant-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Modifier Participant</h3>
+            <form id="edit-participant-form">
+                <!-- Contenu rempli par JavaScript -->
+            </form>
+        </div>
+    </div>
+
+    <div id="abstract-modal" class="modal">
+        <div class="modal-content large">
+            <span class="close">&times;</span>
+            <h3>Révision Abstract</h3>
+            <div id="abstract-content">
+                <!-- Contenu rempli par JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <div id="email-preview-modal" class="modal">
+        <div class="modal-content large">
+            <span class="close">&times;</span>
+            <h3>Aperçu Email</h3>
+            <div id="email-preview-content">
+                <!-- Contenu rempli par JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html> 
