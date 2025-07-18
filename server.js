@@ -41,6 +41,26 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
+// Initialisation de la base de données pour Vercel
+let dbInitialized = false;
+async function ensureDbInitialized() {
+    if (!dbInitialized) {
+        try {
+            await db.initialize();
+            dbInitialized = true;
+            console.log('✅ Base de données initialisée pour Vercel');
+        } catch (error) {
+            console.error('❌ Erreur initialisation DB:', error);
+        }
+    }
+}
+
+// Middleware pour s'assurer que la DB est initialisée
+app.use(async (req, res, next) => {
+    await ensureDbInitialized();
+    next();
+});
+
 // Fonctions utilitaires pour QR codes et PDF
 
 // Générer un QR code en base64
@@ -1024,11 +1044,19 @@ async function startServer() {
     }
 }
 
-// Graceful shutdown
-process.on('SIGINT', async () => {
-    console.log('\n🛑 Arrêt du serveur...');
-    await db.disconnect();
-    process.exit(0);
-});
+// Pour le développement local
+if (require.main === module) {
+    startServer();
+}
 
-startServer(); 
+// Pour Vercel - exporter l'app Express
+module.exports = app;
+
+// Graceful shutdown (uniquement en local)
+if (require.main === module) {
+    process.on('SIGINT', async () => {
+        console.log('\n🛑 Arrêt du serveur...');
+        await db.disconnect();
+        process.exit(0);
+    });
+} 
