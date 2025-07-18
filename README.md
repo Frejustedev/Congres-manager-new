@@ -210,4 +210,4 @@ Pour toute question technique ou demande de personnalisation, l'architecture mod
 
 ---
 
-*Développé avec ❤️ pour la communauté médicale* 
+*Développé avec ❤️ pour la communauté médicale*
